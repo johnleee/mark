@@ -18,6 +18,7 @@ The sequence diagram below represents the high-level architecture of the overall
 **A. One-time step during partner registration:**
 
    **1.1** Walmart will onboard Partner and provide client access token to invoke recipe APIs.
+
    - Getting Access
    - External client will receive a client secret and id issued by Walmart. 
    - Givent the client secret, external client can make an IAM API call using client id and secret.
