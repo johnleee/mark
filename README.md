@@ -85,8 +85,9 @@ The sequence diagram below represents the high-level architecture of the overall
 
 ### 2.1 OAuth API
 
-| Request/Response format | JSON                     |
+| 						  |                      |
 | ----------------------- | ------------------------ |
+| Request/Response format | JSON                     |
 | Method                  | POST                     |
 | URI                     | /identity/oauth/v1/token |
 | Authentication          | Client Id, Client Secret |
@@ -111,7 +112,178 @@ The sequence diagram below represents the high-level architecture of the overall
 
 ### 2.2 Register Recipe API
 
+Register partner recipes with Walmart.
+
+|  						  |                          |
+| ----------------------- | ------------------------ |
+| Request/Response format | JSON                     |
+| Method                  | PUT                      |
+| URI                     | /api/<partnerId>/recipes |
+| Authentication          | Client Id, Client Secret |
+
+**Request Header Parameters**
+
+| Header Parameter | Description                       | Mandatory |
+| ---------------- | --------------------------------- | --------- |
+| WM_SVC.VERSION   | 1.0.0                        	   | No        |
+| WM_CONSUMER.ID   | Walmart Consumer Id               | Yes       |
+| WM_SVC.ENV   	   | stg, prod          			   | No        |
+| WM_SVC.NAME      | affiliates-recipe	               | No        |
+| AUTHORIZATION	   | Bearer <oauth_token>              | Yes       |
+| Content-Type     | application/x-www.form-urlencoded | Yes       |
+
+**Request Body Schema**
+
+**RegisterRecipeRequest** Object
+
+Register Recipe request will contain an array of recipes to be registered.
+
+| Field Name | Data Type              | Description      | Mandatory |
+| ---------- | ---------------------- | ---------------- | --------- |
+| recipes    | array of Recipe object | Array of Recieps | Yes       |
+
+**Recipe** Object
+
+**RegisterRecipeRequest.recipes[]**
+
+Each Recipe object will contain metadata of the recipe along with list of ingredients.
+
+| **Field Name** | **Data Type**                | **Description**                                              | **Mandatory** |
+| -------------- | :--------------------------- | ------------------------------------------------------------ | ------------- |
+| externalId     | string                       | A unique Id for  the object, which partner uses to identify the recipe. | No            |
+| title          | string                       | Title of the  recipe                                         | Yes           |
+| description    | string                       | Description of  the recipe                                   | No            |
+| servingSize    | integer                      | Serving size of  the recipe                                  | Yes           |
+| ingredients    | array of  Ingredients object | Array of  Ingredients                                        | Yes           |
+
+**Ingredient** Object
+
+**RegisterRecipeRequest.recipes[].ingredients[]**
+
+Each Ingredient object will contain external identifier along with the ingredient text.
+
+
+
+| **Field Name** | **Data Type** | **Description**                                              | **Mandatory**                             |
+| -------------- | ------------- | ------------------------------------------------------------ | ----------------------------------------- |
+| externalId     | string        | A unique Id for  the object, which partner uses to identify the ingredient. | No                                        |
+| text           | string        | Ingredient text   e.g.150.0 gram Bacon                       | Yes                                       |
+| product        | string        | Ingredient name  e.g. Bacon                                  | Yes                                       |
+| unit           | string        | Ingredient unit  e.g. gram                                   | Yes (pass empty  string if not available) |
+| unitValue      | string        | Ingredient  quantity  e.g. 150.0                             | Yes                                       |
+
+**Response Body Schema**
+
+**MetaData** Object
+
+**metaData**
+
+| **Field Name** | **Data Type** | **Description**                                              |
+| -------------- | ------------- | ------------------------------------------------------------ |
+| code           | integer       | HTTP response  code, e.g. 200 for success                    |
+| message        | string        | Response message.                                            |
+| processedAt    | integer       | Timestamp of the  request.                                   |
+| processedId    | string        | Unique ID of the  request. Can be used e.g. for technical support. |
+
+**RegisterRecipeResponse** Object
+
+| **Field Name** | **Data Type**                   | **Description**  |
+| -------------- | ------------------------------- | ---------------- |
+| recipes        | array of  RecipeResponse object | Array of Recipes |
+
+**Recipe** Object
+
+**RegisterRecipeResponse.recipes[]** 
+
+| **Field Name** | **Data Type**                | **Description**                                              |
+| -------------- | ---------------------------- | ------------------------------------------------------------ |
+| externalId     | string                       | A unique Id for  the object, which partner uses to identify the recipe. |
+| recipeId       | integer                      | A unique Id for  the object, which WMT uses to identity the recipe |
+| updateTime     | Integer                      | Update Timestamp                                             |
+| title          | string                       | Title of the  recipe                                         |
+| description    | string                       | Description of  the recipe                                   |
+| servingSize    | integer                      | Serving size of  the recipe                                  |
+| ingredients    | array of  Ingredients object | Array of  Ingredients                                        |
+
+**Ingredient** object
+
+**RegisterRecipeResponse.recipes[].ingredients**
+
+Each Ingredient object will contain external identifier along with the ingredient text.
+
+| **Field Name** | **Data Type** | **Description**                                              |
+| -------------- | ------------- | ------------------------------------------------------------ |
+| ingredientId   | string        | A unique Id for  the object, which WMT uses to identity the ingredient |
+| externalId     | string        | A unique Id for  the object, which partner uses to identify the ingredient. |
+| text           | string        | Ingredient text                                              |
+| product        | string        | Ingredient name                                              |
+| unit           | string        | Ingredient unit                                              |
+| unitValue      | string        | Ingredient quantity                                          |
+
 ### 2.3 Update Recipe API
+
+Update partner recipes with WMT. Updating a recipe is atomic. You need to override the whole recipe. If some fields are skipped they will be deleted from a recipe.
+
+| Request/Response  format | JSON                     |
+| ------------------------ | ------------------------ |
+| Method                   | POST                     |
+| URI                      | /api/<partnerId>/recipes |
+| Authentication           | Client access  token     |
+
+**Request Header Parameters**
+
+| **Header  Parameter** | **Description**      | **Mandatory** |
+| --------------------- | -------------------- | ------------- |
+| WM_SVC.VERSION        | 1.0.0                | No            |
+| WM_CONSUMER.ID        | Walmart Consumer  ID | Yes           |
+| WM_SVC.ENV            | stg, prod            | No            |
+| WM_SVC.NAME           | affiliates-recipe    | No            |
+| AUTHORIZATION         | Bearer  <oauthToken> | Yes           |
+| Content-Type          | application/json     | Yes           |
+
+**Request Body Schema** 
+
+**UpdateRecipeRequest** Object
+
+ Update Recipe request will contain an array of recipes to be registered.
+
+| **Field Name** | **Data Type**           | **Description**  |
+| -------------- | ----------------------- | ---------------- |
+| recipes        | array of Recipe  object | Array of Recipes |
+
+**Recipe** object
+
+**UpdateRecipeRequest.recipes[]**
+
+Each Recipe object will contain metadata of the recipe along with list of ingredients.
+
+| **Field Name** | **Data Type**                | **Description**                                              | **Mandatory** |
+| -------------- | ---------------------------- | ------------------------------------------------------------ | ------------- |
+| recipeId       | integer                      | WMT unique Id for  recipe                                    | Yes           |
+| externalId     | string                       | A unique Id for  the object, which partner uses to identify the recipe. | No            |
+| title          | string                       | Title of the  recipe                                         | Yes           |
+| description    | string                       | Description of  the recipe                                   | No            |
+| servingSize    | integer                      | Serving size of  the recipe                                  | Yes           |
+| ingredients    | array of  Ingredients object | Array of Ingredients                                         | Yes           |
+
+**Ingredient** object
+
+**UpdateRecipeRequest.recipes[].ingredients**
+
+Each Ingredient object will contain external identifier along with the ingredient text.
+
+ 
+
+| **Field Name** | **Data Type** | **Description**                                              | **Mandatory**                             |
+| -------------- | ------------- | ------------------------------------------------------------ | ----------------------------------------- |
+| ingredientId   | integer       | WMT unigue Id for  ingredient                                | Yes                                       |
+| externalId     | string        | A unique Id for  the object, which partner uses to identify the ingredient. | No                                        |
+| text           | string        | Ingredient text   e.g.150.0 gram Bacon                       | Yes                                       |
+| product        | string        | Ingredient name  e.g. Bacon                                  | Yes                                       |
+| unit           | string        | Ingredient unit  e.g. gram                                   | Yes (pass empty  string if not available) |
+| unitValue      | string        | Ingredient  quantity  e.g. 150.0                             | Yes                                       |
+
+**Response** is same as **RegisterRecipeResponse** above**.**
 
 ### 2.4 Store Locator API
 
