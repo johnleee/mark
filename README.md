@@ -1,6 +1,22 @@
 # Affiliate Recipe Specification
 
-[TOC]
+
+
+[Overview](#overview) <br/>
+[Recipe Service Flow](#recipe-service-flow)
+[1. Onboarding Steps](#1-onboarding-steps)
+[2. API](#2-api) <br/>
+[2.1 OAuth API](#21-oauth-api) <br/>
+[2.2 Register Recipe API](#22-register-recipe-api) <br/>
+[2.3 Update Recipe API](#23-update-recipe-api) <br/>
+[2.4 Recipe Products API](#25-recipe-products-api) <br/>
+[2.5 Similar Products API](#26-similar-products-api) <br/>
+3. CURL Calls <br/>
+3.1 [OAuth API](#oauth-api-curl) <br/>
+3.2 [Register Recipe API](#register-recipe-api-curl) <br/>
+4.3 [Update Recipe API](#update-recipe-api-curl) <br/>
+3.4 [Recipe Products API](#recipe-products-api-curl) <br/>
+3.5 [Similar Products API](#similar-products-api-curl) <br/>
 
 ## Overview
 
@@ -18,7 +34,6 @@ The sequence diagram below represents the high-level architecture of the overall
 **A. One-time step during partner registration:**
 
    **1.1** Walmart will onboard Partner and provide client access token to invoke recipe APIs.
-
    - Getting Access
    - External client will receive a client secret and id issued by Walmart. 
    - Givent the client secret, external client can make an IAM API call using client id and secret.
