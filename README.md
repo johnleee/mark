@@ -1,9 +1,6 @@
 # Affiliate Recipe Specification
 
-
-
-
-
+[TOC]
 
 ## Overview
 
@@ -15,12 +12,59 @@ The sequence diagram below represents the high-level architecture of the overall
 
 ![image-20200624145459940](/Users/j0l05qj/Library/Application Support/typora-user-images/image-20200624145459940.png)
 
-External client will receive a client secret and id issued by Walmart
 
-Given the client secret, external client can make a IAM call using client id and secret
+## 1. Onboarding Steps
 
+**A. One-time step during partner registration:**
 
-### OAuth API
+   **1.1** Walmart will onboard Partner and provide client access token to invoke recipe APIs.
+   - Getting Access
+   - External client will receive a client secret and id issued by Walmart. 
+   - Givent the client secret, external client can make an IAM API call using client id and secret.
+
+   **1.2** Partner registers all recipes by specifying recipes in structured format. Partners will upload/email recipes in a JSON file that will have this format:
+
+```json
+{
+  "recipes": [
+    {
+      "externalId": "14",
+      "title": "Bacon Quiche",
+      "description": "Quiche is the perfect food.",
+      "servingSize": 4,
+      "ingredients": [
+        {
+          "externalId": "ing2643",
+          "text": "1.0 Pie Crust",
+          "product": "Pie Crust",
+          "unit": "",
+          "unitValue": "1.0"
+        },
+        {
+          "externalId": "ing153",
+          "text": "150.0 gram Bacon",
+          "product": "Bacon",
+          "unit": "gram",
+          "unitValue ": "150.0"
+        }
+      ]
+    }
+  ]
+}
+```
+
+**B. One-time step during user setup:**
+
+   **1.3** Partner invokes Store Locator API to get store details by passing customer zip code.
+
+**C. Active User Flow:**
+
+   **1.4** Partner invokes Get Recipe Products API to get Ingredient to Product mapping details for given recipe identifiers.
+   **1.5** Partner invokes Get Similar Products API to get Similar Products for given product identifiers.
+
+## 2 API
+
+### 2.1 OAuth API
 
 | Request/Response format | JSON                     |
 | ----------------------- | ------------------------ |
@@ -46,13 +90,31 @@ Given the client secret, external client can make a IAM call using client id and
 
 
 
-### Register Recipe API
+### 2.2 Register Recipe API
 
-### Update Recipe API
+### 2.3 Update Recipe API
 
-### Recipe Products API
+### 2.4 Store Locator API
 
-### Similar Products API
+### 2.5 Recipe Products API
+
+### 2.5 Similar Products API
+
+## 3 CURL Calls
+
+### 3.1 OAuth API CURL Call
+
+### 3.2 Register Recipe API CURL Call
+
+### 3.3 Update Recipe CURL Call
+
+### 3.4 Store Locator API CURL Call
+
+### 3.5 Recipe Products API CURL Call
+
+### 3.6 Similar Products API CURL Call
+
+
 
 
 
