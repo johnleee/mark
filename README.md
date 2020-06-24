@@ -2,7 +2,13 @@
 
 
 
-[Overview](#overview) <br/>
+## Overview
+
+The Walmart Recipe service can be used to map partner recipes with products in the Walmart Grocery Catalog. The service provides real time mapping of recipe ingredients to available grocery catalog products at a Walmart store level. The document lists onboarding steps along with API specification required to perform the Partner Recipes to Walmart Grocery Catalog integration.
+
+The sequence diagram below represents the high-level architecture of the overall flow. The onboarding section lists the steps required to: onboard a new partner, register recipes, and invoke mapping APIs. API documentation lists the API details along with sample request/response body.
+
+
 [Recipe Service Flow](#recipe-service-flow)
 1. [Onboarding Steps](#1-onboarding-steps) <br/>
 2. [API](#2-api) <br/>
@@ -19,12 +25,6 @@
 3.3 [Store Locator API CURL Call](#34-store-locator-api-curl-call) <br/>
 3.5 [Recipe Products API CURL Call](#35-recipe-products-api-curl-call) <br/>
 3.6 [Similar Products API CURL Call](#36-similar-products-api-curl-call) <br/>
-
-## Overview
-
-The Walmart Recipe service can be used to map partner recipes with products in the Walmart Grocery Catalog. The service provides real time mapping of recipe ingredients to available grocery catalog products at a Walmart store level. The document lists onboarding steps along with API specification required to perform the Partner Recipes to Walmart Grocery Catalog integration.
-
-The sequence diagram below represents the high-level architecture of the overall flow. The onboarding section lists the steps required to: onboard a new partner, register recipes, and invoke mapping APIs. API documentation lists the API details along with sample request/response body.
 
 ## Recipe Service Flow
 
