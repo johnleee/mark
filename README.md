@@ -12,7 +12,7 @@
 2.4 [Store Locator API](#23-store-locator-api) <br/>
 2.5 [Recipe Products API](#25-recipe-products-api) <br/>
 2.6 [Similar Products API](#26-similar-products-api) <br/>
-3. [CURL Calls] (#3-curl-calls) <br/>
+3. [CURL Calls](#3-curl-calls) <br/>
 3.1 [OAuth API CURL Call](#31-oauth-api-curl) <br/>
 3.2 [Register Recipe API CURL Call](#32-register-recipe-api-curl-call) <br/>
 3.3 [Update Recipe API CURL Call](#33-update-recipe-api-curl-call) <br/>
