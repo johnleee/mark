@@ -4,19 +4,21 @@
 
 [Overview](#overview) <br/>
 [Recipe Service Flow](#recipe-service-flow)
-[1. Onboarding Steps](#1-onboarding-steps)
-[2. API](#2-api) <br/>
-[2.1 OAuth API](#21-oauth-api) <br/>
-[2.2 Register Recipe API](#22-register-recipe-api) <br/>
-[2.3 Update Recipe API](#23-update-recipe-api) <br/>
-[2.4 Recipe Products API](#25-recipe-products-api) <br/>
-[2.5 Similar Products API](#26-similar-products-api) <br/>
-3. CURL Calls <br/>
-3.1 [OAuth API](#oauth-api-curl) <br/>
-3.2 [Register Recipe API](#register-recipe-api-curl) <br/>
-4.3 [Update Recipe API](#update-recipe-api-curl) <br/>
-3.4 [Recipe Products API](#recipe-products-api-curl) <br/>
-3.5 [Similar Products API](#similar-products-api-curl) <br/>
+1. [Onboarding Steps](#1-onboarding-steps) <br/>
+2. [API](#2-api) <br/>
+2.1 [OAuth API](#21-oauth-api) <br/>
+2.2 [Register Recipe API](#22-register-recipe-api) <br/>
+2.3 [Update Recipe API](#23-update-recipe-api) <br/>
+2.4 [Store Locator API](#23-store-locator-api) <br/>
+2.5 [Recipe Products API](#25-recipe-products-api) <br/>
+2.6 [Similar Products API](#26-similar-products-api) <br/>
+3. [CURL Calls] (#3-curl-calls) <br/>
+3.1 [OAuth API CURL Call](#31-oauth-api-curl) <br/>
+3.2 [Register Recipe API CURL Call](#32-register-recipe-api-curl-call) <br/>
+3.3 [Update Recipe API CURL Call](#33-update-recipe-api-curl-call) <br/>
+3.3 [Store Locator API CURL Call](#34-store-locator-api-curl-call) <br/>
+3.5 [Recipe Products API CURL Call](#35-recipe-products-api-curl-call) <br/>
+3.6 [Similar Products API CURL Call](#36-similar-products-api-curl-call) <br/>
 
 ## Overview
 
