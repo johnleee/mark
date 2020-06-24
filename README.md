@@ -8,6 +8,7 @@ The Walmart Recipe service can be used to map partner recipes with products in t
 
 The sequence diagram below represents the high-level architecture of the overall flow. The onboarding section lists the steps required to: onboard a new partner, register recipes, and invoke mapping APIs. API documentation lists the API details along with sample request/response body.
 
+## Table of Contents
 
 [Recipe Service Flow](#recipe-service-flow)
 1. [Onboarding Steps](#1-onboarding-steps) <br/>
